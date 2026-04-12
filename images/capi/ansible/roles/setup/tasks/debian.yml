@@ -83,6 +83,14 @@
   ansible.builtin.command: sed -i 's/nullbootctl/nullbootctl --no-tpm --no-efivars/' /var/lib/dpkg/info/nullboot.postinst
   when: packer_build_name is search('cvm')
 
+- name: Next task is to sleep for 30 minutes
+  ansible.builtin.debug:
+    msg: "Will sleep for 30 minues now"
+
+- name: Sleep for 30 minutes
+  ansible.builtin.pause:
+    minutes: 30
+
 - name: Perform a dist-upgrade
   ansible.builtin.apt:
     force_apt_get: true

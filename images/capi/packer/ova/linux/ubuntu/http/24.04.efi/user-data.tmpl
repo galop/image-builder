@@ -81,8 +81,7 @@ autoinstall:
       device: format-0
       type: mount
       id: mount-0
-  # Subiquity only supports security|all; security is the least install-time apt work.
-  updates: security
+  updates: "all"
   ssh:
     install-server: true
     allow-pw: true
@@ -92,9 +91,6 @@ autoinstall:
   # Create the default user.
   # Ensures the "builder" user doesn't require a password to use sudo.
   user-data:
-    # Skip cloud-init apt update/upgrade on first boot.
-    package_update: false
-    package_upgrade: false
     users:
       - name: builder
         # openssl passwd -6 -salt <random salt> -stdin <<< <SSH password>
